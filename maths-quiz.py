@@ -1,4 +1,7 @@
-﻿from random import choice, randint
+﻿# Aaron Stacey
+# www.github.com/AIS05
+
+from random import choice, randint
 from math import floor
 
 operators = ['+', '-', '/', '*']
@@ -19,8 +22,8 @@ def nameInput():
     global name
 
     print("Welcome!")
-    name =  str(input("What should I call you? "))
-    print(f"Hello, {name}") 
+    name = str(input("What should I call you? "))
+    print(f"Hello, {name}")
 
 
 def diffSelect():
@@ -29,7 +32,7 @@ def diffSelect():
     global diff
 
     while True:
-        print("Select your difficulty, higher difficulty will mean that you get bigger numbers but your score will be larger.") 
+        print("Select your difficulty, higher difficulty will mean that you get bigger numbers but your score will be larger.")
         diff = str(input("Please Input 'Easy', 'Medium', 'Hard'> ")).lower()
 
         if diff == "easy":
@@ -51,11 +54,11 @@ def divNumGen():
     global b
     global operator
 
-    while True:   
+    while True:
         a = randint(1, 12) * diffMultpl
         b = randint(1, 12) * diffMultpl
 
-        if a % b == 0:   
+        if a % b == 0:
             break
 
 
@@ -66,13 +69,13 @@ def numGen():
     global operator
     global diffMultpl
 
-    if operator in ('+','-'):
+    if operator in ('+', '-'):
         a = randint(0, 99) * diffMultpl
         b = randint(0, 99) * diffMultpl
     elif operator == '*':
         a = randint(0, 12) * diffMultpl
         b = randint(0, 12) * diffMultpl
-    else: 
+    else:
         divNumGen()
 
 
@@ -111,14 +114,13 @@ def printQuestion():
     print(f'Question {QNum}/20')
     print(f'{local_a} {local_operator} {local_b} = {local_ans}')
     print("What should be in place of ??")
-
     userInput(corAns)
-    
+
 
 def userInput(corAns):
     """This function takes in user input and checks if it is correct"""
     global score
-    #print(corAns)
+    # print(corAns)
     inpt = str(input("Enter your answer "))
 
     if inpt == str(corAns):
@@ -138,7 +140,7 @@ def main():
         ans = floor(eval(func))
 
         printQuestion()
-        #print(func, f'= {ans}')
+        # print(func, f'= {ans}')
 
     print(f"You got {score}/20 question correct on {diff} difficulty")
     print(f"Your score is {score * diffMultpl}")
