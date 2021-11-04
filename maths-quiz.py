@@ -35,9 +35,11 @@ def diffSelect():
         if diff == "easy":   
             diffMultpl = 1
             break
+        
         elif diff == "medium":   
             diffMultpl = 3
             break
+
         elif diff == "hard":   
             diffMultpl = 7
             break
