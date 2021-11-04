@@ -9,8 +9,37 @@ b = 1
 ans = 0
 score = 0
 QNum = 0
-diffMultpl = 1
-diff = "Easy"
+diffMultpl = 0
+diff = ""
+name = ""
+
+def nameInput():
+    global name
+
+    name =  str(input("What should I call you? "))
+    print(f"Hello, {name}") 
+
+def diffSelect():
+    global diffMultpl
+    global diff
+
+    while True:
+        print("Select your difficulty, higher difficulty will mean that you get bigger numbers but your score will be larger.")
+        try:
+            diff = str(input("Please Input 'Easy', 'Medium', 'Hard'> ")).lower()
+        except:
+            pass
+
+        if diff == "easy":
+            diffMultpl = 1
+            break
+        elif diff == "medium":
+            diffMultpl = 3
+            break
+        elif diff == "hard":
+            diffMultpl = 7
+            break
+
 
 def divNumGen():
     global a
@@ -28,13 +57,14 @@ def numGen():
     global a
     global b
     global operator
+    global diffMultpl
 
     if operator in ('+','-'):
-        a = randint(0, 99)
-        b = randint(0, 99)
+        a = randint(0, 99) * diffMultpl
+        b = randint(0, 99) * diffMultpl
     elif operator == '*':
-        a = randint(0, 12)
-        b = randint(0, 12)
+        a = randint(0, 12) * diffMultpl
+        b = randint(0, 12) * diffMultpl
     else:
         divNumGen()
 
@@ -100,8 +130,11 @@ def main():
         #print(func, f'= {ans}')
 
     print(f"You got {score}/20 question correct on {diff} difficulty")
+    print(f"Your score is {score * diffMultpl}")
 
 
 
 if __name__ == "__main__":
+    nameInput()
+    diffSelect()
     main()
