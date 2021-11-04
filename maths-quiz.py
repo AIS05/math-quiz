@@ -13,62 +13,66 @@ diffMultpl = 0
 diff = ""
 name = ""
 
-def nameInput():
+
+def nameInput():   
     global name
 
     name =  str(input("What should I call you? "))
     print(f"Hello, {name}") 
 
-def diffSelect():
+
+def diffSelect():   
     global diffMultpl
     global diff
 
-    while True:
+    while True:   
         print("Select your difficulty, higher difficulty will mean that you get bigger numbers but your score will be larger.")
-        try:
+        try:   
             diff = str(input("Please Input 'Easy', 'Medium', 'Hard'> ")).lower()
-        except:
+        except:   
             pass
 
-        if diff == "easy":
+        if diff == "easy":   
             diffMultpl = 1
             break
-        elif diff == "medium":
+        elif diff == "medium":   
             diffMultpl = 3
             break
-        elif diff == "hard":
+        elif diff == "hard":   
             diffMultpl = 7
             break
 
 
-def divNumGen():
+def divNumGen():   
     global a
     global b
     global operator
 
-    while True:
+    while True:   
         a = randint(1, 12)
         b = randint(1, 12)
 
-        if a % b == 0:
+        if a % b == 0:   
             break
 
-def numGen():
+
+def numGen():   
     global a
     global b
     global operator
     global diffMultpl
 
-    if operator in ('+','-'):
+    if operator in ('+','-'):   
         a = randint(0, 99) * diffMultpl
         b = randint(0, 99) * diffMultpl
-    elif operator == '*':
+    elif operator == '*':   
         a = randint(0, 12) * diffMultpl
         b = randint(0, 12) * diffMultpl
-    else:
+    else:   
         divNumGen()
 
-def printQuestion():
+
+def printQuestion():   
     global a
     global b
     global operator
@@ -81,16 +85,16 @@ def printQuestion():
     local_operator = operator
     hidden = choice(['a', 'b', 'ans', 'op'])
 
-    if hidden == 'a':
+    if hidden == 'a':   
         corAns = a
         local_a = '??'
-    elif hidden == 'b':
+    elif hidden == 'b':   
         corAns = b
         local_b = '??'
-    elif hidden == 'op':
+    elif hidden == 'op':   
         corAns = operator
         local_operator = '??'
-    else:
+    else:   
         corAns = ans
         local_ans = '??'
 
@@ -106,22 +110,22 @@ def printQuestion():
     userInput(corAns)
     
 
-def userInput(corAns):
+def userInput(corAns):   
     global score
     #print(corAns)
     inpt = str(input("Enter your answer "))
 
-    if inpt == str(corAns):
+    if inpt == str(corAns):    
         score += 1
 
 
-def main():
+def main():    
     global a
     global b
     global operator
     global ans
 
-    while QNum != 20:
+    while QNum != 20:    
         numGen()
         func = f'{a} {operator} {b}'
         ans = floor(eval(func))
@@ -134,7 +138,7 @@ def main():
 
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":    
     nameInput()
     diffSelect()
     main()
