@@ -27,11 +27,8 @@ def diffSelect():
     global diff
 
     while True:   
-        print("Select your difficulty, higher difficulty will mean that you get bigger numbers but your score will be larger.")
-        try:   
-            diff = str(input("Please Input 'Easy', 'Medium', 'Hard'> ")).lower()
-        except Exception:   
-            pass
+        print("Select your difficulty, higher difficulty will mean that you get bigger numbers but your score will be larger.") 
+        diff = str(input("Please Input 'Easy', 'Medium', 'Hard'> ")).lower()
 
         if diff == "easy":   
             diffMultpl = 1
