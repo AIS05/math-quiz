@@ -15,6 +15,7 @@ name = ""
 
 
 def nameInput():   
+    """Username input and a welcome message"""
     global name
 
     print("Welcome!")
@@ -23,6 +24,7 @@ def nameInput():
 
 
 def diffSelect():   
+    """Difficulty input"""
     global diffMultpl
     global diff
 
@@ -44,19 +46,21 @@ def diffSelect():
 
 
 def divNumGen():   
+    """This function generates random numbers for devision question"""
     global a
     global b
     global operator
 
     while True:   
-        a = randint(1, 12)
-        b = randint(1, 12)
+        a = randint(1, 12) * diffMultpl
+        b = randint(1, 12) * diffMultpl
 
         if a % b == 0:   
             break
 
 
 def numGen():   
+    """This function generates random numbers for non-devision question"""
     global a
     global b
     global operator
@@ -73,6 +77,7 @@ def numGen():
 
 
 def printQuestion():   
+    """This function creates the question and makes one of the number blank"""
     global a
     global b
     global operator
@@ -111,6 +116,7 @@ def printQuestion():
     
 
 def userInput(corAns):   
+    """This function takes in user input and checks if it is correct"""
     global score
     #print(corAns)
     inpt = str(input("Enter your answer "))
@@ -120,6 +126,7 @@ def userInput(corAns):
 
 
 def main():    
+    """Main function, starts the code"""
     global a
     global b
     global operator
