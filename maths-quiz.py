@@ -17,6 +17,7 @@ name = ""
 def nameInput():   
     global name
 
+    print("Welcome!")
     name =  str(input("What should I call you? "))
     print(f"Hello, {name}") 
 
@@ -29,13 +30,13 @@ def diffSelect():
         print("Select your difficulty, higher difficulty will mean that you get bigger numbers but your score will be larger.")
         try:   
             diff = str(input("Please Input 'Easy', 'Medium', 'Hard'> ")).lower()
-        except:   
+        except Exception:   
             pass
 
         if diff == "easy":   
             diffMultpl = 1
             break
-        
+
         elif diff == "medium":   
             diffMultpl = 3
             break
@@ -137,7 +138,6 @@ def main():
 
     print(f"You got {score}/20 question correct on {diff} difficulty")
     print(f"Your score is {score * diffMultpl}")
-
 
 
 if __name__ == "__main__":    
