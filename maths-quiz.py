@@ -17,6 +17,7 @@ diffMultpl = 0
 diff = ""
 name = ""
 
+
 def storeData(pscore, pname, pdiff, corrans):
     """Opens and writes json files"""
     with open('data.txt', 'r+') as file:
@@ -30,7 +31,7 @@ def storeData(pscore, pname, pdiff, corrans):
         file_data = json.load(file)
         file_data['scoreboard'].append(data)
         file.seek(0)
-        json.dump(file_data, file, indent = 4)
+        json.dump(file_data, file, indent=4)
 
 
 def nameInput():
