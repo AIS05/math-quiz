@@ -3,6 +3,7 @@
 
 from random import choice, randint
 from math import floor
+from operator import itemgetter
 import json
 
 operators = ['+', '-', '/', '*']
@@ -31,7 +32,23 @@ def storeData(pscore, pname, pdiff, corrans):
         file_data = json.load(file)
         file_data['scoreboard'].append(data)
         file.seek(0)
-        json.dump(file_data, file, indent=4)
+        json.dumps(file_data, file, indent=4)
+
+
+def renderScoreboard():
+    """Reads JSON file with the scores and displays a scoreboard"""
+    with open('data.json', 'r') as file:
+        scoreboard = json.load(file)['scoreboard']
+
+    scoreboard = sorted(scoreboard, key=itemgetter('score'), reverse=True)
+    for i in range(0, 9):
+        try:
+            print(scoreboard[i])
+
+        except IndexError:
+            break
+
+
 
 
 def nameInput():
@@ -156,9 +173,12 @@ def main():
     print(f"Your score is {score * diffMultpl}")
 
     storeData(score*diffMultpl, name, diff, score)
+    print("Scoreboard:")
+    renderScoreboard()
 
 
 if __name__ == "__main__":
+    renderScoreboard()
     nameInput()
     diffSelect()
     main()
