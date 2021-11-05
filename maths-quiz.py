@@ -20,7 +20,7 @@ name = ""
 
 def storeData(pscore, pname, pdiff, corrans):
     """Opens and writes json files"""
-    with open('data.txt', 'r+') as file:
+    with open('data.json', 'r+') as file:
         data = {
                 'name': str(pname),
                 'corrans': str(corrans),
