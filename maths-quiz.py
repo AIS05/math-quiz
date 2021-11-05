@@ -32,7 +32,7 @@ def storeData(pscore, pname, pdiff, corrans):
         file_data = json.load(file)
         file_data['scoreboard'].append(data)
         file.seek(0)
-        json.dumps(file_data, file, indent=4)
+        json.dump(file_data, file, indent=4)
 
 
 def renderScoreboard():
@@ -43,12 +43,10 @@ def renderScoreboard():
     scoreboard = sorted(scoreboard, key=itemgetter('score'), reverse=True)
     for i in range(0, 9):
         try:
-            print(scoreboard[i])
+            print(f"Top {i+1} | Score {scoreboard[i]['score']} | {scoreboard[i]['name']} | {scoreboard[i]['corrans']}/20 on {scoreboard[i]['difficulty']} mode.")
 
         except IndexError:
             break
-
-
 
 
 def nameInput():
@@ -56,7 +54,7 @@ def nameInput():
     global name
 
     print("Welcome!")
-    name = str(input("What should I call you? "))
+    name = str(input("What is your name?\n "))
     print(f"Hello, {name}")
 
 
@@ -173,12 +171,12 @@ def main():
     print(f"Your score is {score * diffMultpl}")
 
     storeData(score*diffMultpl, name, diff, score)
-    print("Scoreboard:")
+    print("")
+    print("Top 10:")
     renderScoreboard()
 
 
 if __name__ == "__main__":
-    renderScoreboard()
     nameInput()
     diffSelect()
     main()
