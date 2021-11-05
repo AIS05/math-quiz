@@ -3,6 +3,7 @@
 
 from random import choice, randint
 from math import floor
+import json
 
 operators = ['+', '-', '/', '*']
 operator = choice(operators)
@@ -15,6 +16,19 @@ QNum = 0
 diffMultpl = 0
 diff = ""
 name = ""
+
+def storeData(pscore, pname, pdiff):
+    """Opens and writes json files"""
+    data = {}
+    data['scores'] = []
+    data['scores'].append({
+        'name': str(pname),
+        'score': str(pscore),
+        'difficulty': str(pdiff)
+    })
+
+    with open('scores.txt', 'w') as outfile:
+        json.dump(data, outfile)
 
 
 def nameInput():
@@ -144,6 +158,8 @@ def main():
 
     print(f"You got {score}/20 question correct on {diff} difficulty")
     print(f"Your score is {score * diffMultpl}")
+
+    storeData(score*diffMultpl, name, diff)
 
 
 if __name__ == "__main__":
