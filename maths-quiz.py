@@ -17,18 +17,20 @@ diffMultpl = 0
 diff = ""
 name = ""
 
-def storeData(pscore, pname, pdiff):
+def storeData(pscore, pname, pdiff, corrans):
     """Opens and writes json files"""
-    data = {}
-    data['scores'] = []
-    data['scores'].append({
-        'name': str(pname),
-        'score': str(pscore),
-        'difficulty': str(pdiff)
-    })
+    with open('data.txt', 'r+') as file:
+        data = {
+                'name': str(pname),
+                'corrans': str(corrans),
+                'score': str(pscore),
+                'difficulty': str(pdiff)
+        }
 
-    with open('scores.txt', 'w') as outfile:
-        json.dump(data, outfile)
+        file_data = json.load(file)
+        file_data['scoreboard'].append(data)
+        file.seek(0)
+        json.dump(file_data, file, indent = 4)
 
 
 def nameInput():
@@ -80,8 +82,6 @@ def numGen():
     """This function generates random numbers for non-devision question"""
     global a
     global b
-    global operator
-    global diffMultpl
 
     if operator in ('+', '-'):
         a = randint(0, 99) * diffMultpl
@@ -95,10 +95,6 @@ def numGen():
 
 def printQuestion():
     """This function creates the question and makes one of the number blank"""
-    global a
-    global b
-    global operator
-    global ans
     global QNum
 
     local_a = a
@@ -143,12 +139,11 @@ def userInput(corAns):
 
 def main():
     """Main function, starts the code"""
-    global a
-    global b
-    global operator
     global ans
+    global operator
 
     while QNum != 20:
+        operator = choice(operators)
         numGen()
         func = f'{a} {operator} {b}'
         ans = floor(eval(func))
@@ -159,7 +154,7 @@ def main():
     print(f"You got {score}/20 question correct on {diff} difficulty")
     print(f"Your score is {score * diffMultpl}")
 
-    storeData(score*diffMultpl, name, diff)
+    storeData(score*diffMultpl, name, diff, score)
 
 
 if __name__ == "__main__":
